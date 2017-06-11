@@ -61,6 +61,6 @@ class Controller extends Object
 
     function __destruct()
     {
-        $this->swoole->__clean();
+       //销毁
     }
 }

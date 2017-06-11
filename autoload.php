@@ -9,5 +9,5 @@
  * file that was distributed with this source code.
  */
 
-require __DIR__.'/src/Autoloader.php';
+require __DIR__.'/src/Huoniao/Autoloader.php';
 Huoniao\Autoloader::register();
