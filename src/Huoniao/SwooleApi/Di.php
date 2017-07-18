@@ -24,8 +24,4 @@ class Di
     	return self::$_instance;
     }
 
-    public function import($class){
-
-		require_once File_ROOT.'/Lib'.$class;
-    }
 }

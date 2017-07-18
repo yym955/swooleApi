@@ -45,9 +45,13 @@ class Object
         $this->di = \Huoniao\SwooleApi\Di::getInstance();
     }
  
+    protected function import($class){
 
-    function __call($func, $param)
+        require_once File_ROOT.'/Lib'.$class;
+    }
+
+    /*function __call($func, $param)
     {
         return call_user_func_array(array($this->di, $func), $param);
-    }
+    }*/
 }
