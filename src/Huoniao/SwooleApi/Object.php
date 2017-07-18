@@ -32,19 +32,22 @@ namespace Huoniao\SwooleApi;
  * @method Platform\Linux os
  */
 class Object
-{
-    /**
-     * @var \Swoole
-     */
-    public $swoole;
+{ 
+    public $di;
 
     function __get($key)
     {
-        return $this->swoole->$key;
+        return $this->di->$key;
     }
+
+    function __construct()
+    {  
+        $this->di = \Huoniao\SwooleApi\Di::getInstance();
+    }
+ 
 
     function __call($func, $param)
     {
-        return call_user_func_array(array($this->swoole, $func), $param);
+        return call_user_func_array(array($this->di, $func), $param);
     }
 }

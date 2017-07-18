@@ -7,11 +7,21 @@ class Controller extends Object
 {
     
     protected $config;
+    protected $request;
+    protected $response;
 
-    function __construct()
-    {  
-        echo "xx";
+    function __construct($request,$response,$config=array())
+    {   parent::__construct();
+        $this->response = $response;
+        $this->request = $request;
+        $this->config = $config;
     }
+
+
+    /*function __set($key,$obj)
+    {
+         $this->$key = $obj;
+    } */
  
     /**
      * 输出JSON字串
@@ -26,12 +36,12 @@ class Controller extends Object
         $json = array('code' => $code, 'message' => $message, 'data' => $data);
         if (!empty($_REQUEST['jsonp']))
         {
-            $this->http->header('Content-type', 'application/x-javascript');
+            $this->response->header('Content-type', 'application/x-javascript');
             return $_REQUEST['jsonp'] . "(" . json_encode($json) . ");";
         }
         else
         {
-            $this->http->header('Content-type', 'application/json');
+            $this->response->header('Content-type', 'application/json');
             return json_encode($json);
         }
     }
