@@ -6,7 +6,7 @@ namespace Huoniao\SwooleApi;
 class Dispatcher 
 {
     
-     static public function execute($request,$response){
+     static public function execute($request,$response,$server){
      	  $depr = "/";
      	  $paths  =   explode($depr,trim($request->server['path_info'],$depr));
      	 if(count($paths)==3){
@@ -17,6 +17,7 @@ class Dispatcher
 			if(class_exists($class)){ 
 				$c = new $class($request,$response);  
 				if(is_callable(array($c,$_a))){  
+					$c->server = $server;
 					$rs = $c->$_a();
 				    return $rs;
 				}else{
